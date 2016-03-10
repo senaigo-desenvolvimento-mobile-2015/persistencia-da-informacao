@@ -1,12 +1,28 @@
 # Persistencia da informação
 
-Trabalho para a matéria Persistência da informação, prof. Edjalma Queiros da Silva, na pós-graduação em Projeto e desenvolvimento de software para mobile SENAC / FATESG GO.
+### Descrição
+Exercício para a matéria Persistência da informação, *Prof. Edjalma Queiros da Silva*, na pós-graduação em Projeto e desenvolvimento de software para mobile *SENAC / FATESG GO*.
 
-Desenvolvido com [Node.js](https://nodejs.org/en/) com [Express](http://expressjs.com/) e [Sequelize](http://docs.sequelizejs.com/en/latest/) como ORM.
+### Instalação
+1 - Com o node.js previamente instalado, rodar:
+
+``$ npm install``
+
+2 - É necessário criar o banco de dados manualmente e editar o arquivo *config.json* informando o banco, usuário e senha.
+
+``$ node_modules/.bin/sequelize db:migrate``
+
+### Dependências
+* [Node.js](https://nodejs.org/en/) 
+* [Express](http://expressjs.com/) 
+* [Sequelize](http://docs.sequelizejs.com/en/latest/).
+* [PostgreSQL](http://www.postgresql.org/)
+
+### MER
 
 ![MER](/public/images/mer.png "Modelo")
 
-Estrutura do projeto:
+### Estrutura do projeto:
 ```
 ├── app.js
 ├── bin
@@ -37,3 +53,7 @@ Estrutura do projeto:
 │   ├── produto.js
 ├── seeders
 ```
+
+[Postman](https://www.getpostman.com/) uma ótima ferramenta para realizar testes e requisições http.
+
+![Postman](/public/images/postman.png "Postman")
