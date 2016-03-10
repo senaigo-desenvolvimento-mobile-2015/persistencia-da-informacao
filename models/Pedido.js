@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
                 });
                 Pedido.hasMany(models.ItemPedido,{
                     foreignKey: 'id_pedido', 
-                    targetKey: 'pedido_id'
+                    targetKey: 'id'
                 });
             }
         }

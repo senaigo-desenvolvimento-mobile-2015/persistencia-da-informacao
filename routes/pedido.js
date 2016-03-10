@@ -1,6 +1,6 @@
 'use strict';
 /*
- * @controller: Cliente
+ * @controller: Pedido
  */
 var express = require('express');
 var router = express.Router();
@@ -9,12 +9,11 @@ var models = require('../models/data-base-helper');
  * Cadastar 
  */
 router.post('/cadastrar', function (req, res, next) {
-    models.Cliente.create({
-        Nome: req.body.nome,
-        Email: req.body.email,
-        Senha: req.body.senha
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    models.Pedido.create({
+        id_cliente: req.body.cliente,
+        Data: Date()
+    }).then(function ($pedido) {
+        res.status(200).json($pedido);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -23,18 +22,16 @@ router.post('/cadastrar', function (req, res, next) {
  * Editar
  */
 router.put('/editar/:id', function (req, res, next) {
-    models.Cliente.find({
+    models.Pedido.find({
         where: {
             id: req.params.id
         }
-    }).then(function ($cliente) {
-        if ($cliente) {
-            $cliente.updateAttributes({
-                Nome: req.body.nome,
-                Senha: req.body.senha,
-                Email: req.body.email
-            }).then(function ($cliente) {
-                res.status(200).send($cliente);
+    }).then(function ($pedido) {
+        if ($pedido) {
+            $pedido.updateAttributes({
+                Data: req.body.data
+            }).then(function ($data) {
+                res.status(200).send($data);
             }).catch(function ($err) {
                 res.status(500).json($err.message);
             });
@@ -45,12 +42,12 @@ router.put('/editar/:id', function (req, res, next) {
  * Deletar
  */
 router.delete('/excluir/:id', function (req, res, next) {
-    models.Cliente.destroy({
+    models.Pedido.destroy({
         where: {
             id: req.params.id
         }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($pedido) {
+        res.status(200).json($pedido);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -59,8 +56,8 @@ router.delete('/excluir/:id', function (req, res, next) {
  * Consultar todos 
  */
 router.get('/consultar/todos', function (req, res, next) {
-    models.Cliente.findAll({}).then(function ($cliente) {
-        res.status(200).json($cliente);
+    models.Pedido.findAll({}).then(function ($produto) {
+        res.status(200).json($produto);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -69,12 +66,12 @@ router.get('/consultar/todos', function (req, res, next) {
  * Consultar por identificador
  */
 router.get('/consultar/:id', function (req, res, next) {
-    models.Cliente.find({
+    models.Pedido.find({
         where: {
             id: req.params.id
         }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($pedido) {
+        res.status(200).json($pedido);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -83,12 +80,12 @@ router.get('/consultar/:id', function (req, res, next) {
  * Consultar por UF
  */
 router.get('/consultar/:uf', function (req, res, next) {
-    models.Cliente.find({
+    models.Pedido.find({
         where: {
             Uf: req.params.uf
         }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($pedido) {
+        res.status(200).json($pedido);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });

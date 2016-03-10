@@ -5,12 +5,20 @@
 module.exports = function (sequelize, DataTypes) {
     var Cep = sequelize.define('Cep', 
         {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                allowNull: false,
+                field: 'cep_id',
+                msg: "Chave primária"
+            },
             Cep: {
                 type: DataTypes.STRING,
                 primaryKey: true,
-                field: 'cep_id',
+                field: 'cep',
                 allowNull: false,
-                msg: "Chave primária", 
+                msg: "Cep", 
                 validate :{
                     len: [1,10]
                 }
@@ -31,8 +39,7 @@ module.exports = function (sequelize, DataTypes) {
                 Cep.belongsTo(models.Municipio,{
                     foreignKey: 'id_municipio'
                 });
-                Cep.belongsToMany(models.Cliente,{
-                    as : 'Cliente',
+                Cep.belongsTo(models.Cliente,{
                     foreignKey: 'id_cliente'
                 });
             }

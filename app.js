@@ -22,11 +22,15 @@ var cep = require('./routes/cep');
 var municipio = require('./routes/municipio');
 var cliente = require('./routes/cliente');
 var produto = require('./routes/produto');
+var pedido = require('./routes/pedido');
+var itempedido = require('./routes/itempedido');
 
 app.use('/cep', cep);
 app.use('/municipio', municipio);
 app.use('/cliente', cliente);
 app.use('/produto', produto);
+app.use('/pedido', pedido);
+app.use('/itempedido', itempedido);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

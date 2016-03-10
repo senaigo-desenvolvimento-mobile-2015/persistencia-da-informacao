@@ -9,28 +9,23 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
-                field: 'item_pedido_id',
                 allowNull: false,
                 msg: "Chave primária"
             },
             Quantidade: {
                 type: DataTypes.INTEGER,
-                field: 'item_pedido_quantidade',
+                field: 'item_quantidade',
                 msg: "Quantidade"
             }
         }, {
             classMethods: {
                 associate: function (models) {
-//                    /*@ManyToOne*/
-//                    ItemPedido.hasMany(models.Produto,{
-//                        foreignKey: 'fk_produto', 
-//                        targetKey: 'produto_id'
-//                    });
-//                    /*@ManyToOne*/
-//                    ItemPedido.hasMany(models.Pedido,{
-//                        foreignKey: 'fk_pedido', 
-//                        targetKey: 'pedido_id'
-//                    });
+                    ItemPedido.belongsTo(models.Pedido,{
+                        foreignKey: 'id_pedido'
+                    });
+                    ItemPedido.hasMany(models.Produto,{
+                        foreignKey: 'id_produto'
+                    });
                 }
             }
         });

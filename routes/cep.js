@@ -9,7 +9,8 @@ router.post('/cadastrar', function (req, res, next) {
         Cep: req.body.cep,
         Bairro: req.body.bairro,
         Logradouro: req.body.logradouro,
-        id_municipio : req.body.municipio
+        id_municipio : req.body.municipio,
+        id_cliente : req.body.cliente
     }).then(function ($cep) {
         res.status(200).json($cep);
     }).catch(function ($err) {
@@ -29,7 +30,9 @@ router.put('/editar/:id', function (req, res, next) {
             $cep.updateAttributes({
                 Cep : req.body.cep,
                 Bairro: req.body.bairro,
-                Logradouro: req.body.logradouro
+                Logradouro: req.body.logradouro,
+                id_municipio : req.body.municipio,
+                id_cliente : req.body.cliente 
             }).then(function ($cep) {
                 res.status(200).send($cep);
             }).catch(function ($err) {

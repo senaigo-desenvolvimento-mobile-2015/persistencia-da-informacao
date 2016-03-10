@@ -6,12 +6,11 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.BIGINT,
-                field: 'pedido_id'
+                type: Sequelize.BIGINT
             },
             quantidade: {
                 type: Sequelize.DATE,
-                field: 'pedido_data'
+                field: 'item_quantidade'
             },
             id_produto: {
                 type: Sequelize.BIGINT,

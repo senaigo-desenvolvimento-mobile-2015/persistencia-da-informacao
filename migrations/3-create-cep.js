@@ -2,12 +2,17 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface.createTable('Ceps', {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: Sequelize.BIGINT,
+                field: 'cep_id'
+            },
             Cep: {
                 allowNull: false,
-                autoIncrement: false,
-                primaryKey: true,
                 type: Sequelize.STRING(12),
-                field: 'cep_id'
+                field: 'cep'
             },
             bairro: {
                 type: Sequelize.STRING(300),
