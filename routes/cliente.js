@@ -13,8 +13,8 @@ router.post('/cadastrar', function (req, res, next) {
         Nome: req.body.nome,
         Email: req.body.email,
         Senha: req.body.senha
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -33,11 +33,13 @@ router.put('/editar/:id', function (req, res, next) {
                 Nome: req.body.nome,
                 Senha: req.body.senha,
                 Email: req.body.email
-            }).then(function ($cliente) {
-                res.status(200).send($cliente);
+            }).then(function ($retorno) {
+                $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
             }).catch(function ($err) {
                 res.status(500).json($err.message);
             });
+        }else{
+            res.status(204).json("");
         }
     });
 });
@@ -49,8 +51,8 @@ router.delete('/excluir/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -59,8 +61,8 @@ router.delete('/excluir/:id', function (req, res, next) {
  * Consultar todos 
  */
 router.get('/consultar/todos', function (req, res, next) {
-    models.Cliente.findAll({}).then(function ($cliente) {
-        res.status(200).json($cliente);
+    models.Cliente.findAll({}).then(function ($retorno) {
+        $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -73,22 +75,8 @@ router.get('/consultar/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
-    }).catch(function ($err) {
-        res.status(500).json($err.message);
-    });
-});
-/*
- * Consultar por UF
- */
-router.get('/consultar/:uf', function (req, res, next) {
-    models.Cliente.find({
-        where: {
-            Uf: req.params.uf
-        }
-    }).then(function ($cliente) {
-        res.status(200).json($cliente);
+    }).then(function ($retorno) {
+        $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });

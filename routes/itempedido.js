@@ -13,8 +13,8 @@ router.post('/cadastrar', function (req, res, next) {
         id_pedido: req.body.pedido,
         id_produto: req.body.produto,
         Quantidade: req.body.quantidade
-    }).then(function ($itemPedido) {
-        res.status(200).json($itemPedido);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -33,11 +33,13 @@ router.put('/editar/:id', function (req, res, next) {
                 Quantidade: req.body.quantidade,
                 id_produto: req.body.produto,
                 id_pedido: req.body.pedido
-            }).then(function ($itemPedido) {
-                res.status(200).send($itemPedido);
+            }).then(function ($retorno) {
+                res.status(200).send($retorno);
             }).catch(function ($err) {
                 res.status(500).json($err.message);
             });
+        }else{
+            res.status(204).json("");
         }
     });
 });
@@ -49,8 +51,8 @@ router.delete('/excluir/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($itemPedido) {
-        res.status(200).json($itemPedido);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -59,8 +61,8 @@ router.delete('/excluir/:id', function (req, res, next) {
  * Consultar todos 
  */
 router.get('/consultar/todos', function (req, res, next) {
-    models.ItemPedido.findAll({}).then(function ($itemPedido) {
-        res.status(200).json($itemPedido);
+    models.ItemPedido.findAll({}).then(function ($retorno) {
+        $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -73,22 +75,8 @@ router.get('/consultar/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($itemPedido) {
-        res.status(200).json($itemPedido);
-    }).catch(function ($err) {
-        res.status(500).json($err.message);
-    });
-});
-/*
- * Consultar por UF
- */
-router.get('/consultar/:uf', function (req, res, next) {
-    models.ItemPedido.find({
-        where: {
-            Uf: req.params.uf
-        }
-    }).then(function ($itemPedido) {
-        res.status(200).json($itemPedido);
+    }).then(function ($retorno) {
+        $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });

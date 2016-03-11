@@ -13,8 +13,8 @@ router.post('/cadastrar', function (req, res, next) {
     models.Municipio.create({
         Descricao: req.body.descricao,
         Uf: $enum[req.body.uf.toUpperCase()].value
-    }).then(function ($municipio) {
-        res.status(200).json($municipio);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -32,11 +32,13 @@ router.put('/editar/:id', function (req, res, next) {
             $municipio.updateAttributes({
                 Descricao: req.body.descricao,
                 Uf: $enum[req.body.uf.toUpperCase()].value
-            }).then(function ($municipio) {
-                res.status(200).send($municipio);
+            }).then(function ($retorno) {
+                res.status(200).send($retorno);
             }).catch(function ($err) {
                 res.status(500).json($err.message);
             });
+        }else{
+            res.status(204).json("");
         }
     });
 });
@@ -48,8 +50,8 @@ router.delete('/excluir/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($municipio) {
-        res.status(200).json($municipio);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -58,8 +60,8 @@ router.delete('/excluir/:id', function (req, res, next) {
  * Consultar todos 
  */
 router.get('/consultar/todos', function (req, res, next) {
-    models.Municipio.findAll({}).then(function ($municipio) {
-        res.status(200).json($municipio);
+    models.Municipio.findAll({}).then(function ($retorno) {
+        $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });
@@ -72,22 +74,8 @@ router.get('/consultar/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(function ($municipio) {
-        res.status(200).json($municipio);
-    }).catch(function ($err) {
-        res.status(500).json($err.message);
-    });
-});
-/*
- * Consultar por UF
- */
-router.get('/consultar/:uf', function (req, res, next) {
-    models.Municipio.find({
-        where: {
-            Uf: req.params.uf
-        }
-    }).then(function ($municipio) {
-        res.status(200).json($municipio);
+    }).then(function ($retorno) {
+        res.status(200).json($retorno);
     }).catch(function ($err) {
         res.status(500).json($err.message);
     });

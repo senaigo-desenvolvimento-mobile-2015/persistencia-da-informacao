@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
                     ItemPedido.belongsTo(models.Pedido,{
                         foreignKey: 'id_pedido'
                     });
-                    ItemPedido.hasMany(models.Produto,{
+                    ItemPedido.belongsTo(models.Produto,{
                         foreignKey: 'id_produto'
                     });
                 }

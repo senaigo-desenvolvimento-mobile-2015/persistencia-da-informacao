@@ -9,7 +9,7 @@ module.exports = {
                 type: Sequelize.BIGINT
             },
             quantidade: {
-                type: Sequelize.DATE,
+                type: Sequelize.INTEGER,
                 field: 'item_quantidade'
             },
             id_produto: {

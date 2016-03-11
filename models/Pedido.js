@@ -21,13 +21,12 @@ module.exports = function (sequelize, DataTypes) {
         }, {
         classMethods: {
             associate: function (models) {
-                Pedido.belongsTo(models.Cliente,{
-                    foreignKey: 'id_cliente', 
-                    as: 'cliente'
+                Pedido.hasOne(models.Cliente,{
+                    foreignKey: 'id',
+                    
                 });
                 Pedido.hasMany(models.ItemPedido,{
-                    foreignKey: 'id_pedido', 
-                    targetKey: 'id'
+                    foreignKey: 'id_pedido',
                 });
             }
         }

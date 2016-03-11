@@ -50,14 +50,6 @@ module.exports = function (sequelize, DataTypes) {
                 afterCreate : function(){
                     console.log('Disparar algum evento após cadastrar');
                 }
-            },
-            classMethods: {
-                associate: function (models) {
-                    Produto.hasMany(models.ItemPedido,{
-                        foreignKey: 'id_produto', 
-                        targetKey: 'produto_id'
-                    });
-                }
             }
         }
     );
