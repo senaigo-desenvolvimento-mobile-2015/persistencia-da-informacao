@@ -68,7 +68,7 @@ router.get('/consultar/todos', function (req, res, next) {
                 attributes: ['municipio_descricao', 'municipio_uf'], 
                 paranoid: false, 
                 required: true
-            }],
+            }]
     }).then(function ($retorno) {
         $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {

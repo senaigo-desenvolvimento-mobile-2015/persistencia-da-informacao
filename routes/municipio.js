@@ -60,7 +60,9 @@ router.delete('/excluir/:id', function (req, res, next) {
  * Consultar todos 
  */
 router.get('/consultar/todos', function (req, res, next) {
-    models.Municipio.findAll({}).then(function ($retorno) {
+    models.Municipio.findAll({
+        
+    }).then(function ($retorno) {
         $retorno !== null ? res.status(200).json($retorno) : res.status(204).json("");
     }).catch(function ($err) {
         res.status(500).json($err.message);
